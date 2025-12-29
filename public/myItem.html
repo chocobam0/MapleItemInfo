@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메이플 캐릭터 장비 분석기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card" id="authSection">
+        <h3>🔑 1. API 키 인증</h3>
+        <p>넥슨 오픈 API 키를 입력하고 인증 버튼을 누르세요.</p>
+        <input type="password" id="apiKeyInput" placeholder="test_b20206e0174...">
+        <br>
+        <button class="btn" onclick="authenticateAndLoad()">키 인증 및 목록 불러오기</button>
+    </div>
+
+    <div class="card" id="selectSection" style="opacity: 0.4;">
+        <h3>👤 2. 캐릭터 선택</h3>
+        <select id="charSelect" disabled>
+            <option value="">먼저 키를 인증해주세요</option>
+        </select>
+        <br>
+        <button id="analyzeBtn" class="btn" onclick="startAnalysis()" disabled>장비 분석 시작</button>
+    </div>
+
+    <div class="header-card" id="headerCard">
+        <h2 id="charTitle"></h2>
+        <div id="charSubInfo"></div>
+    </div>
+
+    <table id="equipTable">
+        <thead>
+            <tr>
+                <th>부위</th>
+                <th>아이템 명칭</th>
+                <th>강화</th>
+                <th>잠재</th>
+            </tr>
+        </thead>
+        <tbody id="equipBody"></tbody>
+    </table>
+</div>
+
+<script src="mapleStoryInfo.js"></script>
+</body>
+</html>
