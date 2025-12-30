@@ -6,8 +6,11 @@ const PORT = 3000;
 // public 폴더 내의 정적 파일들을 외부에서 접근 가능하게 설정
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/',(req,res)=>{
+    res.mainDomin;
+})
 // 기본 경로로 접속 시 index.html 전송
-app.get('/mapleInfo', (req, res) => {
+const mainDomin = app.get('/mapleInfo', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'myItem.html'));
 });
 
