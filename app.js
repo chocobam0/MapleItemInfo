@@ -7,14 +7,14 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',(req,res)=>{
-    res.mainDomin;
+    res.redirect('/mapleinfo');
 })
 // 기본 경로로 접속 시 index.html 전송
-const mainDomin = app.get('/mapleInfo', (req, res) => {
+app.get('/mapleinfo', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'myItem.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`✅ 서버 실행 중: http://localhost:${PORT}/mapleInfo`);
+    console.log(`✅ 서버 실행 중: http://localhost:${PORT}/mapleinfo`);
     console.log(`💡 이제 브라우저에서 위 주소로 접속하세요.`);
 });
