@@ -5,20 +5,22 @@ body {
     color: #1d1d1f;
 }
 
+/* 전체 컨테이너: 기존 650px에서 약 20% 확장된 780px 설정 */
 .container {
-    max-width: 650px;
+    max-width: 780px; 
     margin: 0 auto;
+    padding: 20px;
 }
 
-.card {
+/* 카드 디자인: 여백을 넓혀 시원한 느낌 부여 */
+.card, .header-card {
     background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
     text-align: center;
 }
-
 .card p {
     font-size: 0.85em;
     color: #666;
@@ -69,28 +71,53 @@ input:focus {
     margin-top: 5px;
 }
 
+/* 테이블 레이아웃 고정 및 줄바꿈 방지 */
 table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
-    display: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    table-layout: fixed; 
 }
 
 th, td {
-    padding: 14px;
-    text-align: left;
+    padding: 12px 8px;
+    text-align: center;
     border-bottom: 1px solid #eee;
+    vertical-align: top;
+    font-size: 0.95em;
+
 }
 
-th {
-    background-color: #007aff;
-    color: white;
-}
+/* 열 너비 비율 최적화 (총 100%) */
+th:nth-child(1) { width: 12%; } /* 부위 */
+th:nth-child(2) { width: 28%; } /* 아이템 명칭 */
+th:nth-child(3) { width: 10%; } /* 강화 */
+th:nth-child(4) { width: 25%; } /* 잠재능력 */
+th:nth-child(5) { width: 25%; } /* 에디셔널 */
 
+/* 등급별 색상 (JSON 데이터의 대소문자와 정확히 일치시켜야 함) */
+.레전드리 { color: #2ecc71 !important; font-weight: bold; text-shadow: 0 0 1px #d5f5e3; }
+.유니크 { color: #f1c40f !important; font-weight: bold; text-shadow: 0 0 1px #fcf3cf; }
+.에픽 { color: #9b59b6 !important; font-weight: bold; text-shadow: 0 0 1px #f5eef8; }
+.레어 { color: #3498db !important; font-weight: bold; text-shadow: 0 0 1px #ebf5fb; }
+
+/* 옵션 등급 텍스트 스타일 */
+.grade { 
+    display: block; 
+    font-size: 0.85em; 
+    margin-bottom: 4px; 
+}
+.opt-text { 
+    display: block; 
+    font-size: 0.8em; 
+    color: #444; 
+     line-height: 1.4; }
+
+/* 스타포스 색상 */
 .starforce {
-    color: #f39c12;
+    color: #e67e22;
     font-weight: bold;
 }

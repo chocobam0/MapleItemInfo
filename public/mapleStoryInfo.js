@@ -79,16 +79,55 @@ function renderEquip(items) {
     document.getElementById('equipTable').style.display = 'table';
     
     if (!items || items.length === 0) {
-        body.innerHTML = "<tr><td colspan='4' style='text-align:center;'>장착된 장비가 없습니다.</td></tr>";
+        body.innerHTML = "<tr><td colspan='5' style='text-align:center;'>장착 장비가 없습니다.</td></tr>";
         return;
     }
 
     items.forEach(item => {
-        body.innerHTML += `<tr>
-            <td>${item.item_equipment_part}</td>
-            <td><strong>${item.item_name}</strong></td>
-            <td class="starforce">${item.starforce !== "0" ? item.starforce + '★' : '-'}</td>
-            <td>${item.item_potential_option_grade || '-'}</td>
-        </tr>`;
+        // 1. 잠재능력 등급 및 옵션 (보내주신 JSON 구조 반영)
+        // 등급 필드에서 'item_'을 제거해야 정확히 읽어옵니다.
+        const pGrade = item.potential_option_grade; 
+        const p1 = item.potential_option_1;
+        const p2 = item.potential_option_2;
+        const p3 = item.potential_option_3;
+
+        // 2. 에디셔널 등급 및 옵션
+        const aGrade = item.additional_potential_option_grade;
+        const a1 = item.additional_potential_option_1;
+        const a2 = item.additional_potential_option_2;
+        const a3 = item.additional_potential_option_3;
+
+        // 잠재능력 HTML 생성
+        let potentialHTML = `<span class="grade ${pGrade || ''}">${pGrade || '없음'}</span>`;
+        if (p1) {
+            potentialHTML += `
+                <span class="opt-text">${p1}</span>
+                ${p2 ? `<span class="opt-text">${p2}</span>` : ""}
+                ${p3 ? `<span class="opt-text">${p3}</span>` : ""}
+            `;
+        }
+
+        // 에디셔널 HTML 생성
+        let additionalHTML = `<span class="grade ${aGrade || ''}">${aGrade || '없음'}</span>`;
+        if (a1) {
+            additionalHTML += `
+                <div class="add-opt-box">
+                    <span class="opt-text">${a1}</span>
+                    ${a2 ? `<span class="opt-text">${a2}</span>` : ""}
+                    ${a3 ? `<span class="opt-text">${a3}</span>` : ""}
+                </div>
+            `;
+        }
+
+        const itemIcon = item.item_icon ? `<img src="${item.item_icon}" style="width:30px; vertical-align:middle; margin-right:5px;">` : "";
+
+        body.innerHTML += `
+            <tr>
+                <td>${item.item_equipment_part}</td>
+                <td>${itemIcon}<strong>${item.item_name}</strong></td>
+                <td class="starforce">${item.starforce !== "0" ? item.starforce + '★' : '-'}</td>
+                <td>${potentialHTML}</td>
+                <td>${additionalHTML}</td>
+            </tr>`;
     });
 }
