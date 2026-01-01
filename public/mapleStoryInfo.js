@@ -123,9 +123,9 @@ function renderEquip(items) {
 
         body.innerHTML += `
             <tr>
-                <td>${item.item_equipment_part}</td>
-                <td>${itemIcon}<strong>${item.item_name}</strong></td>
-                <td class="starforce">${item.starforce !== "0" ? item.starforce + '★' : '-'}</td>
+                <td class = "Vertical">${item.item_equipment_part}</td>
+                <td class = "Vertical">${itemIcon}<strong>${item.item_name}</strong></td>
+                <td class="starforce Vertical" >${item.starforce !== "0" ? item.starforce + '★' : '-'}</td>
                 <td>${potentialHTML}</td>
                 <td>${additionalHTML}</td>
             </tr>`;
