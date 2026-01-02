@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 80;
+const PORT = 3000;
 
 // public 폴더 내의 정적 파일들을 외부에서 접근 가능하게 설정
 app.use(express.static(path.join(__dirname, 'public')));
